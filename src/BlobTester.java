@@ -107,9 +107,7 @@ class BlobTester {
 			scanner.nextLine();
 		}
 		scanner.close();
-		if (count!=0) {
-			fail("fail");
-		}
+		assertTrue(count==0);
 	}
 
 }
