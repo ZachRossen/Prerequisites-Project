@@ -62,7 +62,7 @@ class BlobTester {
 	}
 	
 	@Test
-	void testIndex() throws Exception {
+	void testAdd() throws Exception {
 		index.addBlobs("f.txt");
 		Blob b = new Blob("f.text");
 		String s = b.getSha1();
@@ -86,9 +86,20 @@ class BlobTester {
 			scan.nextLine();
 		}
 		scan.close();
-		if (counter!=3) {
-			fail("fail");
-		}
+		assertTrue(counter==3);
+	}
+	
+	@Test
+	void testRemove() throws Exception {
+		index.addBlobs("f.txt");
+		Blob b = new Blob("f.text");
+		String s = b.getSha1();
+		index.addBlobs("fi.txt");
+		Blob bl = new Blob("fi.text");
+		String sh = bl.getSha1();
+		index.addBlobs("fil.txt");
+		Blob blo = new Blob("fil.text");
+		String sha = blo.getSha1();
 		
 		index.removeBlobs("f.txt");
 		index.removeBlobs("fi.txt");
